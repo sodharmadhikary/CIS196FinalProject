@@ -11,29 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: :user_first_name %>
+    <%= form.text_field :first_name, id: :user_first_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, id: :user_last_name %>
+    <%= form.text_field :last_name, id: :user_last_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
+    <%= form.text_field :email, id: :user_email, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :password_hash %>
-    <%= form.text_field :password_hash, id: :user_password_hash %>
+  <div class="field form-group">
+    <%= form.label :password %>
+    <%= form.text_field :password_hash, id: :user_password_hash, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :balance %>
-    <%= form.number_field :balance, id: :user_balance %>
+    <%= form.number_field :balance, id: :user_balance, class: 'form-control' %>
   </div>
 
   <div class="actions">
