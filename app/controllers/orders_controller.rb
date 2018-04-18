@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = @user.orders
   end
 
   # GET /orders/1
@@ -63,6 +64,10 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_order
       @order = Order.find(params[:id])
     end

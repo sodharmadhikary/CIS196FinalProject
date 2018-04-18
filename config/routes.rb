@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root "welcome#index"
 
-  resources :orders
   resources :foods
-  resources :users
+  resources :users do
+    resources :orders
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
