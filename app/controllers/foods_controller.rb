@@ -67,6 +67,10 @@ class FoodsController < ApplicationController
       @food = Food.find(params[:id])
     end
 
+    def set_user
+      @user = User.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
       params.require(:food).permit(:name, :order_id, :cost)

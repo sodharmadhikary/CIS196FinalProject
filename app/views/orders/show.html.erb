@@ -10,5 +10,7 @@
   <%= @order.date %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<% if logged_in? %>
+    <%= link_to 'Add Foods', "users/#{current_user.id}/orders/#{current_order}/add_food", method: :post %>
+<% end %> |
+<%= link_to 'Back', user_orders_path %>

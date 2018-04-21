@@ -6,14 +6,17 @@
 </p>
 
 <p>
-  <strong>Order:</strong>
-  <%= @food.order %>
-</p>
-
-<p>
   <strong>Cost:</strong>
   <%= @food.cost %>
 </p>
 
-<%= link_to 'Edit', edit_food_path(@food) %> |
+<% if logged_in? && ordering?%>
+    <%= link_to 'Add to Order', "/add_food", method: :post %>
+    <%#/users/:user_id/orders/:id/add_food(.:format)%>
+<% end %>
+
+<% if logged_in? && current_user.email == "sohamd@seas.upenn.edu" %>
+    <%= link_to 'Edit', edit_food_path(@food) %> |
+<% end %>
+
 <%= link_to 'Back', foods_path %>

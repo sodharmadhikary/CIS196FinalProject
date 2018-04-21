@@ -7,8 +7,7 @@
     <tr>
       <th class="table-dark bg-dark">Name</th>
       <th class="table-dark bg-dark">Cost</th>
-      <th class="table-dark bg-dark" colspan="2"></th>
-      <th colspan="3"></th>
+      <th class="table-dark bg-dark" colspan="3"></th>
     </tr>
   </thead>
 
@@ -16,14 +15,15 @@
     <% @foods.each do |food| %>
       <tr>
         <td><%= food.name %></td>
-        <td><%= food.order %></td>
         <td><%= food.cost %></td>
         <td><%= link_to 'Show', food %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<p>Create a new order to get any of these delicious menu items!</p>
 <br>
 
-<%= link_to 'New Food', new_food_path %>
+<%if logged_in? && current_user.email == "sohamd@seas.upenn.edu" %>
+  <%= link_to 'New Food', new_food_path %>
+<% end %>

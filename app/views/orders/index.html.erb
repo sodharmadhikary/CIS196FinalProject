@@ -2,12 +2,12 @@
 
 <h1>Orders</h1>
 
-<table>
+<table class="table table-light">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th colspan="3"></th>
+      <th class="table-dark bg-dark">Name</th>
+      <th class="table-dark bg-dark">Date</th>
+      <th class="table-dark bg-dark" colspan="3"></th>
     </tr>
   </thead>
 
@@ -16,9 +16,9 @@
       <tr>
         <td><%= order.name %></td>
         <td><%= order.date %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', "/users/#{@user.id}/orders/#{order.id}" %></td>
+        <td><%= link_to 'Edit', "/users/#{@user.id}/orders/#{order.id}/edit" %></td>
+        <td><%= link_to 'Cancel Order', "/users/#{@user.id}/orders/#{order.id}", method: :delete, data: { confirm: 'Are you sure? Cancellation charges may apply.' } %></td>
       </tr>
     <% end %>
   </tbody>
