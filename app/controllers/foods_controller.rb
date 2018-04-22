@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:add_food, :order_index]
 
   # GET /foods
   # GET /foods.json
@@ -61,6 +62,11 @@ class FoodsController < ApplicationController
     end
   end
 
+  def add_food
+    @order.add_food(@food)
+    redirect_back(fallback_location: @user_order)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food
@@ -69,6 +75,10 @@ class FoodsController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_order
+      @order = Order.find(params[:order_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

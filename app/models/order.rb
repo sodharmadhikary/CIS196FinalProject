@@ -5,8 +5,8 @@ class Order < ApplicationRecord
   has_many :users, through: :users_order
 
   def add_food(food)
-    return if Orders_food.exists?(order: self, food: food)
-    Orders_food.new(order: self, food: food).save
+    return if OrdersFood.exists?(order: self, food: food)
+    OrdersFood.new(order: self, food: food).save
   end
 
 end

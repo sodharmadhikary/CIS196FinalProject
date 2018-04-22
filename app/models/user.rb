@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   include BCrypt
 
+  def full_name
+    first_name + ' ' + last_name
+  end
+
   def password
     @password ||= Password.new(password_hash) unless password_hash.nil?
   end

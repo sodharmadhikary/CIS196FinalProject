@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :foods
   resources :users do
     resources :orders do
-      post 'add_food', to: 'orders#add_food'
+      get 'add_food', to: 'foods#index'
+      post 'add_food', to: 'foods#add_food'
     end
   end
 

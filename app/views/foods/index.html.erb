@@ -17,12 +17,23 @@
         <td><%= food.name %></td>
         <td><%= food.cost %></td>
         <td><%= link_to 'Show', food %></td>
+        <% if ordering? %>
+        <td><%= link_to 'Add Food', "/users/#{current_user.id}/orders/#{current_order.id}/add_food", method: :post %></td>
+        <% end %>
+        <%#/users/:user_id/orders/:order_id/add_food(.:format)%>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% if !ordering? %>
 <p>Create a new order to get any of these delicious menu items!</p>
 <br>
+<% end %>
+
+<% if ordering? %>
+<p>Select the Foods You Would Like to Add to Your Order.</p>
+<br>
+<% end %>
 
 <%if logged_in? && current_user.email == "sohamd@seas.upenn.edu" %>
   <%= link_to 'New Food', new_food_path %>

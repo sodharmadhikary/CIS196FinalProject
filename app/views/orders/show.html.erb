@@ -11,6 +11,6 @@
 </p>
 
 <% if logged_in? %>
-    <%= link_to 'Add Foods', "users/#{current_user.id}/orders/#{current_order}/add_food", method: :post %>
+    <%= link_to 'Add Foods', "#{@order.id}/add_food" %>
 <% end %> |
 <%= link_to 'Back', user_orders_path %>
