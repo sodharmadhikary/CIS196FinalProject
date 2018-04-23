@@ -3,7 +3,6 @@ class CreateFoods < ActiveRecord::Migration[5.1]
     create_table :foods do |t|
       t.string :name
       t.integer :cost
-
       t.timestamps
     end
   end

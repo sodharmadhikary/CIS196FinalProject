@@ -10,14 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+<p>Start by naming your order and selecting your delivery date and time. </p>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :order_name %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
+    <%= form.label :'delivery Date' %>
     <%= form.datetime_select :date, id: :order_date %>
   </div>
 

@@ -16,10 +16,15 @@
       <tr>
         <td><%= food.name %></td>
         <td><%= food.cost %></td>
-        <td><%= link_to 'Show', food %></td>
         <% if ordering? %>
-        <td><%= link_to 'Add Food', "/users/#{current_user.id}/orders/#{current_order.id}/add_food", method: :post %></td>
-        <% end %>
+        <td><%= link_to 'Details/Order', "/users/#{current_user.id}/orders/#{current_order.id}/foods/#{food.id}" %></td>
+        <% else %>
+        <td><%= link_to 'Details', food %></td>
+         <% end %>
+        <%#<% if ordering?
+        <td><%= link_to 'Add Food', user_order_add_food_path(food), method: :post %></td>
+        <%#"/users/#{current_user.id}/orders/#{current_order.id}/add_food"%>
+        <%#<% end %>
         <%#/users/:user_id/orders/:order_id/add_food(.:format)%>
       </tr>
     <% end %>

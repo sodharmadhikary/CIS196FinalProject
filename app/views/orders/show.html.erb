@@ -6,10 +6,10 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong>Delivery Date:</strong>
   <%= @order.date %>
 </p>
-
+<p>Select add foods to customize your order with some of our delicious menu items! </p>
 <% if logged_in? %>
     <%= link_to 'Add Foods', "#{@order.id}/add_food" %>
 <% end %> |

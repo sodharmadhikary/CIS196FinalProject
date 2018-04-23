@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:show, :edit, :update, :destroy, :add_food]
   before_action :set_order, only: [:add_food, :order_index]
+  before_action :set_user, only: [:add_food]
 
   # GET /foods
   # GET /foods.json
@@ -63,7 +64,8 @@ class FoodsController < ApplicationController
   end
 
   def add_food
-    @order.add_food(@food)
+    current_order.add_food(@food)
+    current_user.balance = @user.balance - 10
     redirect_back(fallback_location: @user_order)
   end
 
@@ -74,7 +76,7 @@ class FoodsController < ApplicationController
     end
 
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
     end
 
     def set_order
@@ -83,6 +85,6 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :order_id, :cost)
+      params.require(:food).permit(:name, :order_id, :cost, :description)
     end
 end

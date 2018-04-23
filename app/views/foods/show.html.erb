@@ -10,8 +10,13 @@
   <%= @food.cost %>
 </p>
 
+<p>
+  <strong>Description:</strong>
+  <%= @food.description %>
+</p>
+
 <% if logged_in? && ordering?%>
-    <%= link_to 'Add to Order', "/add_food", method: :post %>
+    <%= link_to 'Add to Order', "/users/#{current_user.id}/orders/#{current_order.id}/add_food/#{@food.id}", method: :post %> |
     <%#/users/:user_id/orders/:id/add_food(.:format)%>
 <% end %>
 
@@ -19,4 +24,8 @@
     <%= link_to 'Edit', edit_food_path(@food) %> |
 <% end %>
 
+<% if logged_in? && ordering? %>
+<%= link_to 'Back', "/users/#{current_user.id}/orders/#{current_order.id}/add_food" %>
+<% else %>
 <%= link_to 'Back', foods_path %>
+<%end %>
