@@ -20,7 +20,7 @@
     <%#/users/:user_id/orders/:id/add_food(.:format)%>
 <% end %>
 
-<% if logged_in? && current_user.email == "sohamd@seas.upenn.edu" %>
+<% if logged_in? && current_user.email == 'sohamd@seas.upenn.edu' %>
     <%= link_to 'Edit', edit_food_path(@food) %> |
 <% end %>
 

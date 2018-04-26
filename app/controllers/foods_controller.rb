@@ -64,27 +64,33 @@ class FoodsController < ApplicationController
   end
 
   def add_food
-    current_order.add_food(@food)
-    current_user.balance = @user.balance - 10
-    redirect_back(fallback_location: @user_order)
+    if current_user.balance >= @food.cost
+      current_order.add_food(@food)
+      new_balance = current_user.balance - @food.cost
+      current_user.update_column(:balance, new_balance)
+      redirect_to "/users/#{current_user.id}/orders/#{current_order.id}/add_food", notice: 'The food has been added to your order.'
+    else
+      redirect_to "/users/#{current_user.id}/orders/#{current_order.id}/add_food", notice: 'We could not add the food, as your balance is too low.'
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_food
-      @food = Food.find(params[:id])
-    end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_food
+    @food = Food.find(params[:id])
+  end
 
-    def set_order
-      @order = Order.find(params[:order_id])
-    end
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def food_params
-      params.require(:food).permit(:name, :order_id, :cost, :description)
-    end
+  def set_order
+    @order = Order.find(params[:order_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def food_params
+    params.require(:food).permit(:name, :order_id, :cost, :description)
+  end
 end

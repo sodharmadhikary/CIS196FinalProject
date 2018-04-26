@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :add_food, :destroy]
-  before_action :set_user, only: [:index, :new, :create, :add_food, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :create, :add_food, :edit, :update, :destroy, :create_helper]
   before_action :set_food, only: [:add_food]
 
   # GET /orders
@@ -26,9 +26,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-    @user.orders << @order
-
+    create_helper
     respond_to do |format|
       if @order.save
         format.html { redirect_to "/users/#{@user.id}/orders/#{@order.id}", notice: 'Order was successfully created.' }
@@ -70,21 +68,27 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
-    def set_food
-      @food = Food.find(params[:food_id])
-    end
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:name, :date)
-    end
+  def set_food
+    @food = Food.find(params[:food_id])
+  end
+
+  def create_helper
+    @order = Order.new(order_params)
+    @user.orders << @order
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:name, :date)
+  end
 end

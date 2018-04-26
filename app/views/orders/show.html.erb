@@ -9,7 +9,34 @@
   <strong>Delivery Date:</strong>
   <%= @order.date %>
 </p>
+
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th class="table-dark bg-dark">Foods</th>
+      <th class="table-dark bg-dark">Cost</th>
+    </tr>
+  </thead>
+
+  <% total_cost= 0 %>
+  <tbody>
+    <% @order.foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.cost %></td>
+        <% total_cost = total_cost + food.cost %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <strong>Total Cost:</strong>
+  <%= total_cost %>
+</p>
+
 <p>Select add foods to customize your order with some of our delicious menu items! </p>
+
 <% if logged_in? %>
     <%= link_to 'Add Foods', "#{@order.id}/add_food" %>
 <% end %> |

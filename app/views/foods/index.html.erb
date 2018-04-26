@@ -21,11 +21,12 @@
         <% else %>
         <td><%= link_to 'Details', food %></td>
          <% end %>
-        <%#<% if ordering?
-        <td><%= link_to 'Add Food', user_order_add_food_path(food), method: :post %></td>
-        <%#"/users/#{current_user.id}/orders/#{current_order.id}/add_food"%>
-        <%#<% end %>
-        <%#/users/:user_id/orders/:order_id/add_food(.:format)%>
+        <% if logged_in? && current_user.email == "sohamd@seas.upenn.edu"%>
+          <td><%= link_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if ordering? %>
+          <td><%= link_to 'Add Food', "/users/#{current_user.id}/orders/#{current_order.id}/add_food/#{food.id}", method: :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
